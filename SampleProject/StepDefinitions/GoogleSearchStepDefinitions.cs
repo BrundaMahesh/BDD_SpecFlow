@@ -66,6 +66,33 @@ namespace SampleProject.StepDefinitions
             Assert.That(driver.Title,Is.EqualTo(title));
         }
 
+        [When(@"Click on the I'm feeling lucky button")]
+        public void WhenClickOnTheImFeelingLuckyButton()
+        {
+            DefaultWait<IWebDriver> fluentWait = new DefaultWait<IWebDriver>(driver);
+            fluentWait.Timeout = TimeSpan.FromSeconds(10);
+            fluentWait.PollingInterval = TimeSpan.FromMilliseconds(100);
+            fluentWait.IgnoreExceptionTypes(typeof(NoSuchElementException));
+            fluentWait.Message = "Element not found";
+
+            IWebElement? imflButton = fluentWait.Until(d =>
+            {
+                IWebElement? searchButton = driver.FindElement(By.Name("btnI"));
+                return searchButton.Displayed ? searchButton : null;
+            });
+            if (imflButton != null)
+            {
+                imflButton.Click();
+
+            }
+        }
+
+        [Then(@"the results should be redirected to a new page title ""([^""]*)""")]
+        public void ThenTheResultsShouldBeRedirectedToANewPageTitle(string title)
+        {
+            Assert.That(driver.Title.Contains(title));
+        }
+
 
 
     }
