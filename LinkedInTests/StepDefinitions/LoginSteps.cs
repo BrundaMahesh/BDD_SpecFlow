@@ -31,8 +31,8 @@ namespace LinkedInTests.StepDefinitions
             driver?.Quit();
         }
 
-        [When(@"User will enter username")]
-        public void WhenUserWillEnterUsername()
+        [When(@"User will enter '(.*)' ")]
+        public void WhenUserWillEnterUsername(string un)
         {
             DefaultWait<IWebDriver?> fluentWait = new DefaultWait<IWebDriver?>(driver);
             fluentWait.Timeout = TimeSpan.FromSeconds(10);
@@ -41,11 +41,11 @@ namespace LinkedInTests.StepDefinitions
             fluentWait.Message = "Element not found";
 
             IWebElement emailInput = fluentWait.Until(d => d.FindElement(By.Id("session_key")));
-            emailInput.SendKeys("abc@gmail.com");
+            emailInput.SendKeys(un);
         }
 
-        [When(@"User will enter password")]
-        public void WhenUserWillEnterPassword()
+        [When(@"User will enter '(.*)'")]
+        public void WhenUserWillEnterPassword(string pwd)
         {
             DefaultWait<IWebDriver?> fluentWait = new DefaultWait<IWebDriver?>(driver);
             fluentWait.Timeout = TimeSpan.FromSeconds(10);
@@ -54,7 +54,7 @@ namespace LinkedInTests.StepDefinitions
             fluentWait.Message = "Element not found";
 
             passwordInput = fluentWait.Until(d => d.FindElement(By.Id("session_password")));
-            passwordInput.SendKeys("12345");
+            passwordInput.SendKeys(pwd);
         }
 
         [When(@"User will click on login button")]
