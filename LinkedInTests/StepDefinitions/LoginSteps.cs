@@ -19,8 +19,8 @@ namespace LinkedInTests.StepDefinitions
         {
             driver = new ChromeDriver();
         }
-        [BeforeScenario]
-        public static void LoadURL()
+        [Given(@"User will be on the login page")]
+        public void GivenUserWillBeOnTheLoginPage()
         {
             driver.Url = "https://www.linkedin.com";
         }
@@ -76,6 +76,7 @@ namespace LinkedInTests.StepDefinitions
         [Then(@"Error message for password length should be thrown")]
         public void ThenErrorMessageForPasswordLengthShouldBeThrown()
         {
+            Thread.Sleep(5000);
             IWebElement? alertPara = driver?.FindElement(By.XPath("//p[@for='session_password']"));
             string? alertText = alertPara?.Text;
             Assert.That(alertText.Contains("password"));
