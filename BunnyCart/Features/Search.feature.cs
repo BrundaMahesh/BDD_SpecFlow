@@ -118,9 +118,6 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.When(string.Format("User will type the \'{0}\' in the search box", searchtext), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
 #line 9
- testRunner.And("User clicks on search button", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "* ");
-#line hidden
-#line 10
  testRunner.Then(string.Format("Search results are loaded in the same page with \'{0}\'", searchtext), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }

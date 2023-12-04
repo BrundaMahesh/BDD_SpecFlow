@@ -26,6 +26,19 @@ namespace BunnyCart.StepDefinitions
             driver?.Quit();
         }
 
+        [BeforeFeature]
+        public static void LogFileCreation()
+        {
+            string? currdir = Directory.GetParent(@"../../../")?.FullName;
+            string? logfilepath = currdir + "/Logs/SearchFeature_" +
+                DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
+
+            Log.Logger = new LoggerConfiguration()
+            .WriteTo.Console()
+            .WriteTo.File(logfilepath, rollingInterval: RollingInterval.Day)
+            .CreateLogger();
+        }
+
         [AfterScenario]
         public static void NavigateToHomePage()
         {
@@ -45,28 +58,16 @@ namespace BunnyCart.StepDefinitions
         {
             IWebElement? searchInput = driver.FindElement(By.Id("search"));
             searchInput?.SendKeys(searchtext);
-        }
-
-        [When(@"User clicks on search button")]
-        public void WhenUserClicksOnSearchButton()
-        {
-            IWebElement? searchButton = driver.FindElement(By.XPath("//button[@title='Search']"));
-            searchButton?.Click();
+            Log.Information("Typed search text " + searchtext);
+            searchInput?.SendKeys(Keys.Enter);
         }
 
         [Then(@"Search results are loaded in the same page with '([^']*)'")]
         public void ThenSearchResultsAreLoadedInTheSamePageWith(string searchtext)
         {
-            string? currdir = Directory.GetParent(@"../../../")?.FullName;
-            string? logfilepath = currdir + "/Logs/log_" +
-                DateTime.Now.ToString("yyyyMMdd_HHmmss") + ".txt";
-
-            Log.Logger = new LoggerConfiguration()
-            .WriteTo.Console()
-            .WriteTo.File(logfilepath, rollingInterval: RollingInterval.Day)
-            .CreateLogger();
 
             TakeScreenShot(driver);
+            Log.Information("Screenshot taken");
             try
             {
                 Assert.That(driver.Url.Contains(searchtext));
