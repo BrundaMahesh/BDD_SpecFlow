@@ -85,7 +85,6 @@ namespace LinkedInTests.StepDefinitions
             IWebElement? alertPara = driver?.FindElement(By.XPath(
                 "//p[@for='session_password']"));
             string? alertText = alertPara?.Text;
-            Console.WriteLine(alertText);
             Assert.That(alertText.Contains("password"));
         }
 
