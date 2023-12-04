@@ -24,6 +24,11 @@ namespace LinkedInTests.StepDefinitions
         {
             driver.Url = "https://www.linkedin.com";
         }
+/*        [BeforeScenario]
+        public static void LoadURL()
+        {
+            driver.Url = "https://www.linkedin.com";
+        }*/
 
         [AfterFeature]
         public static void CleanUp()
@@ -31,7 +36,7 @@ namespace LinkedInTests.StepDefinitions
             driver?.Quit();
         }
 
-        [When(@"User will enter '(.*)' ")]
+        [When(@"User will enter username '(.*)'")]
         public void WhenUserWillEnterUsername(string un)
         {
             DefaultWait<IWebDriver?> fluentWait = new DefaultWait<IWebDriver?>(driver);
@@ -44,7 +49,7 @@ namespace LinkedInTests.StepDefinitions
             emailInput.SendKeys(un);
         }
 
-        [When(@"User will enter '(.*)'")]
+        [When(@"User will enter password '(.*)'")]
         public void WhenUserWillEnterPassword(string pwd)
         {
             DefaultWait<IWebDriver?> fluentWait = new DefaultWait<IWebDriver?>(driver);
@@ -77,8 +82,10 @@ namespace LinkedInTests.StepDefinitions
         public void ThenErrorMessageForPasswordLengthShouldBeThrown()
         {
             Thread.Sleep(5000);
-            IWebElement? alertPara = driver?.FindElement(By.XPath("//p[@for='session_password']"));
+            IWebElement? alertPara = driver?.FindElement(By.XPath(
+                "//p[@for='session_password']"));
             string? alertText = alertPara?.Text;
+            Console.WriteLine(alertText);
             Assert.That(alertText.Contains("password"));
         }
 
