@@ -48,5 +48,17 @@ namespace BunnyCart.StepDefinitions
             }
 
         }
+        [Then(@"The heading should have '([^']*)'")]
+        public void ThenTheHeadingShouldHave(string searchtext)
+        {
+            IWebElement searchheading = driver.FindElement(By.XPath("//h1[@class='page-title']"));
+            Assert.That(searchheading.Text, Does.Contain(searchtext));
+
+        }
+        [Then(@"Title should have '([^']*)'")]
+        public void ThenTitleShouldHave(string searchtext)
+        {
+            Assert.That(driver.Title, Does.Contain(searchtext));
+        }
     }
 }

@@ -2,6 +2,7 @@ using BunnyCart.Hooks;
 using NUnit.Framework;
 using OpenQA.Selenium;
 using System;
+using System.Reflection.Emit;
 using TechTalk.SpecFlow;
 
 namespace BunnyCart.StepDefinitions
@@ -10,17 +11,28 @@ namespace BunnyCart.StepDefinitions
     public class SearchAndAddToCartSteps
     {
         IWebDriver? driver = AllHooks.driver;
-        [Then(@"The heading should have '([^']*)'")]
-        public void ThenTheHeadingShouldHave(string searchtext)
+        string? label;
+
+        [Given(@"Search page is loaded")]
+        public void GivenSearchPageIsLoaded()
         {
-            IWebElement searchheading = driver.FindElement(By.XPath("//h1[@class='page-title']"));
-            Assert.That(searchtext, Does.Contain(searchheading.Text));
+            driver.Url = "https://www.bunnycart.com/catalogsearch/result/?q=water";
         }
-        [Then(@"Title should have '([^']*)'")]
-        public void ThenTitleShouldHave(string searchtext)
+
+        [When(@"User selects a '([^']*)'")]
+        public void WhenUserSelectsA(string prodno)
         {
-            Assert.That(searchtext, Does.Contain(driver.Title));
+            IWebElement prod=driver.FindElement(By.XPath("//*[@id=\"amasty-shopby-product-list\"]/div[2]/ol/li[1]/div/div[2]/strong/a[" +prodno + "]"));
+            label = prod.Text;
+            prod.Click();
         }
+
+        [Then(@"Product page is loaded")]
+        public void ThenProductPageIsLoaded()
+        {
+            Assert.That(driver.FindElement(By.XPath("//h1[@class='page-title']")).Text.Equals(label));
+        }
+
 
 
 
