@@ -14,7 +14,6 @@ namespace BunnyCart.StepDefinitions
     {
         IWebDriver? driver = AllHooks.driver;
  
-
         [Given(@"User will be on the home page")]
         public void GivenUserWillBeOnTheHomePage()
         {
