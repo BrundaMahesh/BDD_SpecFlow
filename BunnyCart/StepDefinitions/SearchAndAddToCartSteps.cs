@@ -108,7 +108,7 @@ namespace BunnyCart.StepDefinitions
         public void WhenUserClickOn(string type)
         {
             IWebElement typ = driver.FindElement(By.XPath("//div[@role='listbox']//child::div[text()=[" + type + "]"));
-            typ.SendKeys(type);
+            string? t=typ.Text;
             typ.Click();
         }
 
