@@ -1,3 +1,4 @@
+using BunnyCart.Hooks;
 using BunnyCart.Utilities;
 using NUnit.Framework;
 using OpenQA.Selenium;
@@ -11,6 +12,8 @@ namespace BunnyCart.StepDefinitions
     [Binding]
     public class SearchSteps:CoreCodes
     {
+        IWebDriver? driver = AllHooks.driver;
+ 
 
         [Given(@"User will be on the home page")]
         public void GivenUserWillBeOnTheHomePage()

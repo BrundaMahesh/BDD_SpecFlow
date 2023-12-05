@@ -12,7 +12,6 @@ namespace BunnyCart.Utilities
 {
     public class CoreCodes
     {
-        public static IWebDriver? driver;
 
         public void TakeScreenShot(IWebDriver driver)
         {

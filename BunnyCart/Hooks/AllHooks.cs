@@ -6,7 +6,7 @@ using TechTalk.SpecFlow;
 namespace BunnyCart.Hooks
 {
     [Binding]
-    public sealed class BeforeHooks
+    public sealed class AllHooks
     {
         public static IWebDriver? driver;
         
@@ -27,6 +27,18 @@ namespace BunnyCart.Hooks
             .WriteTo.Console()
             .WriteTo.File(logfilepath, rollingInterval: RollingInterval.Day)
             .CreateLogger();
+        }
+
+        [AfterFeature]
+        public static void CleanUp()
+        {
+            driver?.Quit();
+        }
+
+        [AfterScenario]
+        public static void NavigateToHomePage()
+        {
+            driver?.Navigate().GoToUrl("https://www.bunnycart.com/");
         }
 
     }
