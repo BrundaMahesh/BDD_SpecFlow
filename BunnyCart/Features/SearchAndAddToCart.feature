@@ -1,7 +1,7 @@
 ﻿Feature: SearchAndAddToCart
 
 @E2E-Search_And_Add_To_Cart
-Scenario Outline: 1 Search for products
+Scenario Outline: Search for products
 	Given User will be on the home page
 	When User will type the '<searchtext>' in the search box
 	Then Search results are loaded in the same page with '<searchtext>'
@@ -9,9 +9,10 @@ Scenario Outline: 1 Search for products
 	* Title should have '<searchtext>'
 	When User selects a '<productno>'
 	Then Product page is loaded
+	When User click on '<type>'
 Examples: 
-	| searchtext | productno | 
-	| water      | 1         | 
+	| searchtext | productno | type    |
+	| water      | 1         | Net Pot |
 
 #@E2E-Search_And_Add_To_Cart
 #Scenario Outline: 2 Select a particular product
