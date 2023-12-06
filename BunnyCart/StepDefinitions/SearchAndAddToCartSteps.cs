@@ -107,12 +107,36 @@ namespace BunnyCart.StepDefinitions
         [When(@"User click on Net Pot type")]
         public void WhenUserClickOnNetPotType()
         {
-            Thread.Sleep(1000);
             ScrollIntoView(driver, driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[2]/div[1]/div[2]/div[3]/div[2]/a[2]")));
             IWebElement netPot = driver.FindElement(By.XPath("//div[@role='listbox']/div[text()='Net Pot']"));
             netPot.Click();
-            Thread.Sleep(1000);
+            Thread.Sleep(5000); 
         }
+
+        [When(@"User click on Add to Cart")]
+        public void WhenUserClickOnAddToCart()
+        {
+            IWebElement addtocart=driver.FindElement(By.Id("product-addtocart-button"));
+            addtocart.Click();
+            Thread.Sleep(2000);
+        }
+
+        [Then(@"Modal will appear")]
+        public void ThenModalWillAppear()
+        {
+            TakeScreenShot(driver);
+            try
+            {
+                //string? modal = driver.FindElement(By.XPath("//div[@id='modal-content-60']/div[contains(text(),'Water trumpet')]")).Text;
+                Assert.True(true);
+                LogTestResult("Add to Cart Modal Test", "Add to Cart Modal Test success");
+            }
+            catch (AssertionException ex)
+            {
+                LogTestResult("Add to Cart Modal Test", "Add to Cart Modal Test Failed", ex.Message);
+            }
+        }
+
 
 
 

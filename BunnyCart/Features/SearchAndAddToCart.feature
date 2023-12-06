@@ -10,6 +10,8 @@ Scenario Outline: Search for products
 	When User selects a '<productno>'
 	Then Product page is loaded
 	When User click on Net Pot type
+	When User click on Add to Cart
+	Then Modal will appear
 Examples: 
 	| searchtext | productno | 
 	| water      | 1         | 

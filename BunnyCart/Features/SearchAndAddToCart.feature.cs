@@ -134,6 +134,12 @@ this.ScenarioInitialize(scenarioInfo);
 #line 12
  testRunner.When("User click on Net Pot type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
+#line 13
+ testRunner.When("User click on Add to Cart", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 14
+ testRunner.Then("Modal will appear", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
             }
             this.ScenarioCleanup();
         }
