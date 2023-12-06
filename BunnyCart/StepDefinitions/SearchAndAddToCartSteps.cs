@@ -104,13 +104,16 @@ namespace BunnyCart.StepDefinitions
             }
         }
 
-        [When(@"User click on '([^']*)'")]
-        public void WhenUserClickOn(string type)
+        [When(@"User click on Net Pot type")]
+        public void WhenUserClickOnNetPotType()
         {
-            IWebElement typ = driver.FindElement(By.XPath("//div[@role='listbox']//child::div[text()=[" + type + "]"));
-            string? t=typ.Text;
-            typ.Click();
+            Thread.Sleep(1000);
+            ScrollIntoView(driver, driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[2]/div[1]/div[2]/div[3]/div[2]/a[2]")));
+            IWebElement netPot = driver.FindElement(By.XPath("//div[@role='listbox']/div[text()='Net Pot']"));
+            netPot.Click();
+            Thread.Sleep(1000);
         }
+
 
 
 

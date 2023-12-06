@@ -76,8 +76,8 @@ namespace BunnyCart.Features
         [NUnit.Framework.TestAttribute()]
         [NUnit.Framework.DescriptionAttribute("Search for products")]
         [NUnit.Framework.CategoryAttribute("E2E-Search_And_Add_To_Cart")]
-        [NUnit.Framework.TestCaseAttribute("water", "1", "Net Pot", null)]
-        public virtual void SearchForProducts(string searchtext, string productno, string type, string[] exampleTags)
+        [NUnit.Framework.TestCaseAttribute("water", "1", null)]
+        public virtual void SearchForProducts(string searchtext, string productno, string[] exampleTags)
         {
             string[] @__tags = new string[] {
                     "E2E-Search_And_Add_To_Cart"};
@@ -89,7 +89,6 @@ namespace BunnyCart.Features
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             argumentsOfScenario.Add("searchtext", searchtext);
             argumentsOfScenario.Add("productno", productno);
-            argumentsOfScenario.Add("type", type);
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Search for products", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 4
 this.ScenarioInitialize(scenarioInfo);
@@ -133,7 +132,7 @@ this.ScenarioInitialize(scenarioInfo);
  testRunner.Then("Product page is loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
 #line 12
- testRunner.When(string.Format("User click on \'{0}\'", type), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("User click on Net Pot type", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line hidden
             }
             this.ScenarioCleanup();

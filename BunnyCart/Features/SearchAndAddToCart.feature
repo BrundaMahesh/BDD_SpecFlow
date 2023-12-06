@@ -9,10 +9,10 @@ Scenario Outline: Search for products
 	* Title should have '<searchtext>'
 	When User selects a '<productno>'
 	Then Product page is loaded
-	When User click on '<type>'
+	When User click on Net Pot type
 Examples: 
-	| searchtext | productno | type    |
-	| water      | 1         | Net Pot |
+	| searchtext | productno | 
+	| water      | 1         | 
 
 #@E2E-Search_And_Add_To_Cart
 #Scenario Outline: 2 Select a particular product
