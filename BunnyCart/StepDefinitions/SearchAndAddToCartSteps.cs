@@ -110,7 +110,7 @@ namespace BunnyCart.StepDefinitions
             ScrollIntoView(driver, driver.FindElement(By.XPath("//*[@id=\"maincontent\"]/div[2]/div[1]/div[2]/div[3]/div[2]/a[2]")));
             IWebElement netPot = driver.FindElement(By.XPath("//div[@role='listbox']/div[text()='Net Pot']"));
             netPot.Click();
-            Thread.Sleep(5000); 
+           
         }
 
         [When(@"User click on Add to Cart")]
